@@ -187,8 +187,7 @@ Safety Tips:
             st.error("HIGH RISK SPAM")
         elif prob > 0.5:
             st.warning("SUSPICIOUS MESSAGE")
-        else:
-            st.success("LOW RISK")
+
 
 
 
