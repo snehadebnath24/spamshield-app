@@ -6,16 +6,6 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import time
 
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
-
 # ------------------ SETUP ------------------
 st.set_page_config(page_title="SpamShield", page_icon="🛡️", layout="centered")
 
