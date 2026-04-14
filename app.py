@@ -17,11 +17,11 @@ st.markdown("""
 <style>
 
 
-/* 🌙 Same Animation + Clean Dark Colors */
+/*  Animation Clean Dark Colors */
 .stApp {
     background: linear-gradient(-45deg,#0f172a, #1e293b, #0f172a, #020617);
-    background-size: 500% 500%;
-    animation: gradientMove 6s ease infinite;
+    background-size: 700% 700%;
+    animation: gradientMove 4s ease infinite;
     color: #e2e8f0;
 }
 
