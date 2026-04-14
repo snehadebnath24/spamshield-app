@@ -47,10 +47,3 @@ SpamShield/
 # Run Locally
 pip install -r requirements.txt
 streamlit run app.py
-# Screenshots
-
-
-![App Screenshot](images/first.png)
-![App Screenshot](images/spam.png)
-![App Screenshot](images/ham.png)
-
