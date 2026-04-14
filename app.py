@@ -101,13 +101,20 @@ model = pickle.load(open('model.pkl','rb'))
 
 def transform_text(text):
     text = text.lower()
-    words = text.split()   
+    
+    words = text.split()
+
+    cleaned = []
+    for w in words:
+        w = ''.join(ch for ch in w if ch.isalnum())
+        if w:
+            cleaned.append(w)
+
+    stop_words = set(stopwords.words('english'))
 
     filtered = []
-    stop_words = set(stopwords.words('english'))  # small optimization
-
-    for w in words:
-        if w.isalnum() and w not in stop_words:
+    for w in cleaned:
+        if w not in stop_words:
             filtered.append(ps.stem(w))
 
     return " ".join(filtered)
