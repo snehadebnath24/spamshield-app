@@ -5,6 +5,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import time
+nltk.download('stopwords')
 
 # ------------------ SETUP ------------------
 st.set_page_config(page_title="SpamShield", page_icon="🛡️", layout="centered")
