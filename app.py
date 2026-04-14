@@ -181,12 +181,20 @@ Safety Tips:
         else:
             st.success("SAFE MESSAGE")
 
+        
+        # Risk Level
+        if prob > 0.8:
+            st.error("HIGH RISK SPAM")
+        elif prob > 0.5:
+            st.warning("SUSPICIOUS MESSAGE")
+        else:
+            st.success("LOW RISK")
+
+
 
 
         #  Link warning
         if contains_link(input_sms):
             st.info("This message contains a link — be careful")
-
-      
 
 st.markdown('</div>', unsafe_allow_html=True)
