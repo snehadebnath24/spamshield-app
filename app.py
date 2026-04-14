@@ -88,13 +88,26 @@ tfidf = pickle.load(open('vectorizer.pkl','rb'))
 model = pickle.load(open('model.pkl','rb'))
 
 # ------------------ NLP FUNCTION ------------------
+# def transform_text(text):
+#     text = text.lower()
+#     words = nltk.word_tokenize(text)
+
+#     filtered = []
+#     for w in words:
+#         if w.isalnum() and w not in stopwords.words('english'):
+#             filtered.append(ps.stem(w))
+
+#     return " ".join(filtered)
+
 def transform_text(text):
     text = text.lower()
-    words = nltk.word_tokenize(text)
+    words = text.split()   
 
     filtered = []
+    stop_words = set(stopwords.words('english'))  # small optimization
+
     for w in words:
-        if w.isalnum() and w not in stopwords.words('english'):
+        if w.isalnum() and w not in stop_words:
             filtered.append(ps.stem(w))
 
     return " ".join(filtered)
