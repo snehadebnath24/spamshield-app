@@ -5,7 +5,26 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import time
-nltk.download('stopwords')
+import os
+
+@st.cache_resource
+def load_nltk():
+    # download to a writable, persistent folder
+    data_dir = "/tmp/nltk_data"
+    os.makedirs(data_dir, exist_ok=True)
+    nltk.data.path.append(data_dir)
+
+    try:
+        nltk.data.find("tokenizers/punkt")
+    except LookupError:
+        nltk.download("punkt", download_dir=data_dir)
+
+    try:
+        nltk.data.find("corpora/stopwords")
+    except LookupError:
+        nltk.download("stopwords", download_dir=data_dir)
+
+load_nltk()
 
 # ------------------ SETUP ------------------
 st.set_page_config(page_title="SpamShield", page_icon="🛡️", layout="centered")
@@ -89,37 +108,19 @@ tfidf = pickle.load(open('vectorizer.pkl','rb'))
 model = pickle.load(open('model.pkl','rb'))
 
 # ------------------ NLP FUNCTION ------------------
-# def transform_text(text):
-#     text = text.lower()
-#     words = nltk.word_tokenize(text)
-
-#     filtered = []
-#     for w in words:
-#         if w.isalnum() and w not in stopwords.words('english'):
-#             filtered.append(ps.stem(w))
-
-#     return " ".join(filtered)
-
 def transform_text(text):
     text = text.lower()
-    
-    words = text.split()
-
-    cleaned = []
-    for w in words:
-        w = ''.join(ch for ch in w if ch.isalnum())
-        if w:
-            cleaned.append(w)
+    words = nltk.word_tokenize(text)
 
     stop_words = set(stopwords.words('english'))
 
     filtered = []
-    for w in cleaned:
-        if w not in stop_words:
+    for w in words:
+        if w.isalnum() and w not in stop_words:
             filtered.append(ps.stem(w))
 
     return " ".join(filtered)
-
+    
 # ------------------ LINK CHECK ------------------
 def contains_link(text):
     return "http" in text or "www" in text
