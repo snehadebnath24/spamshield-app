@@ -50,4 +50,7 @@ streamlit run app.py
 # Screenshots
 
 
-Add screenshots of your app here
+![App Screenshot](images/first.png)
+![App Screenshot](images/spam.png)
+![App Screenshot](images/ham.png)
+
